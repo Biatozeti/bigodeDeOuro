@@ -24,7 +24,7 @@ class AdministradorController extends Controller
 
         ]);
 
-        if (isset($adm)) {
+        if (isset($adm)) { 
 
             return response()->json([
                 'status' => true,
