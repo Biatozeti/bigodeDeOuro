@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmController;
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
@@ -262,4 +263,16 @@ Route::put ('recuperar/senha/admin', [AdministradorController::class, 'recuperar
 
 //login
 
-Route::post('/login', [ClienteController::class, 'login']);
+
+//autenticacao
+
+Route::post('/create',[AdmController::class, 'store']);
+Route::post('/login', [AdmController::class, 'login']);
+
+Route::get('admin/teste',
+[AdmController::class,'verificaUsuarioLogado'])
+->middleware([
+    'auth:sanctum',
+    SetSanctumGuard::class,
+    isAuthenticated::class
+]);
